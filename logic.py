@@ -1,8 +1,7 @@
 from tabulate import tabulate
-from termcolor import colored
 import numpy as np
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from itertools import cycle
 
 win_conditions = (
@@ -33,8 +32,8 @@ class Game:
     def __init__(self):
         self.init = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.spaces = self.init.copy()
-        self.playerO = Players(name='playerO', sym=colored("O", "blue", attrs=["bold"]), score=[], total_score=0)
-        self.playerX = Players(name='playerX', sym=colored("X", "red", attrs=["bold"]), score=[], total_score=0)
+        self.playerO = Players(name='playerO', sym='O', score=[], total_score=0)
+        self.playerX = Players(name='playerX', sym='X', score=[], total_score=0)
         self.draw = Players(name='Draw', sym='', score=[], total_score=0)
         self.player = self.playerO
         self.mode = 1

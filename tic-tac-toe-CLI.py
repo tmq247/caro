@@ -1,10 +1,11 @@
 import logic
+from termcolor import colored
 
 
 def start():
     gm.player = next(gm.cycler)
 
-    if gm.player.name == "playerO" and gm.mode == 1:
+    if gm.player == gm.playerO and gm.mode == 1:
         gm.move(gm.ai_move())
     elif gm.player.name == 'Draw':
         pass
@@ -53,6 +54,8 @@ def check_input(text, values):
 
 if __name__ == '__main__':
     gm = logic.Game()
+    gm.playerO.sym = colored("O", "blue", attrs=["bold"])
+    gm.playerX.sym = colored("X", "red", attrs=["bold"])
     print("Tic-tac-toe")
     gm.mode = check_input("Select game mode\n[1]: Single player\n[2]: Multiplayer\n", (1, 2))
     start()
