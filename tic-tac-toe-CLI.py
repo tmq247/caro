@@ -1,5 +1,6 @@
 import logic
 from termcolor import colored
+from tabulate import tabulate
 
 
 def start():
@@ -10,13 +11,13 @@ def start():
     elif gm.player.name == 'Draw':
         pass
     else:
-        print(gm.board())
+        print(board())
         print(f"Player: ( {gm.player.sym} )")
         gm.move(check_input("Enter [1-9] to play, [0] to exit:\n", gm.spaces))
 
     winner = gm.win_check()
     if winner:
-        print(gm.board())
+        print(board())
         print('=' * 20)
         print(f"Winner: {winner.name}")
         for i in logic.Players.player_list:
@@ -25,6 +26,13 @@ def start():
         again()
 
     start()
+
+
+def board():
+    brd = []
+    for i in range(0, len(gm.spaces), 3):
+        brd.append(gm.spaces[i:i + 3])
+    return tabulate(brd, tablefmt="rounded_grid")
 
 
 def again():

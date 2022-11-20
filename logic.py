@@ -1,5 +1,3 @@
-from tabulate import tabulate
-import numpy as np
 import random
 from dataclasses import dataclass
 from itertools import cycle
@@ -32,18 +30,13 @@ class Players:
 class Game:
     def __init__(self):
         self.init = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.spaces = self.init.copy()
+        self.spaces = self.init.copy()  # current state of the board
         self.playerO = Players(id=1, name='playerO', sym='O', score=[], total_score=0)
         self.playerX = Players(id=2, name='playerX', sym='X', score=[], total_score=0)
         self.draw = Players(id=0, name='Draw', sym='', score=[], total_score=0)
-        self.player = self.playerO
-        self.mode = 1
+        self.player = self.playerO  # current player
+        self.mode = 1  # mode 1: single player, mode 2: multiplayer
         self.cycler = cycle(Players.player_list)
-
-    def board(self):
-        num = np.array(self.spaces)
-        reshaped = num.reshape(3, 3)
-        return tabulate(reshaped, tablefmt="plain")
 
     def ai_move(self):
         if self.predict_win(self.playerO):  # can AI win?
