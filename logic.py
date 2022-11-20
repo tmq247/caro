@@ -18,6 +18,7 @@ win_conditions = (
 
 @dataclass
 class Players:
+    id: int
     name: str
     sym: str
     score: list
@@ -32,9 +33,9 @@ class Game:
     def __init__(self):
         self.init = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.spaces = self.init.copy()
-        self.playerO = Players(name='playerO', sym='O', score=[], total_score=0)
-        self.playerX = Players(name='playerX', sym='X', score=[], total_score=0)
-        self.draw = Players(name='Draw', sym='', score=[], total_score=0)
+        self.playerO = Players(id=1, name='playerO', sym='O', score=[], total_score=0)
+        self.playerX = Players(id=2, name='playerX', sym='X', score=[], total_score=0)
+        self.draw = Players(id=0, name='Draw', sym='', score=[], total_score=0)
         self.player = self.playerO
         self.mode = 1
         self.cycler = cycle(Players.player_list)
@@ -53,11 +54,11 @@ class Game:
             return random.choice([item for item in self.spaces if isinstance(item, int)])
 
     def predict_win(self, player):
-        score_ = set(player.score)
+        score = set(player.score)
         for i in win_conditions:
             i = set(i)
-            if len(i.difference(score_)) == 1:
-                res = i.difference(score_).pop()
+            if len(i.difference(score)) == 1:
+                res = i.difference(score).pop()
                 if res in self.spaces:
                     return res
 
@@ -78,14 +79,13 @@ class Game:
                 self.player.total_score += 1
                 return self.player
 
-    def draw_check(self):
-        draw = [s for s in self.spaces if isinstance(s, int)]
-        if len(draw) == 0:
-            self.draw.total_score += 1
-            return True
-
     def reset(self):
         self.spaces.clear()
         self.playerO.score.clear()
         self.playerX.score.clear()
         self.spaces = self.init.copy()
+
+    def full_reset(self):
+        for i in Players.player_list:
+            i.total_score = 0
+        self.reset()
