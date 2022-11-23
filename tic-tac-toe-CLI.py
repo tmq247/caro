@@ -20,7 +20,7 @@ def start():
         print(board())
         print('=' * 20)
         print(f"Winner: {winner.name}")
-        for i in logic.Players.player_list:
+        for i in gm.player_list:
             print(f"{i.name}: {i.total_score}")
         print('=' * 20)
         again()

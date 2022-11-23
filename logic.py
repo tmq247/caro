@@ -21,10 +21,6 @@ class Players:
     sym: str
     score: list
     total_score: int
-    player_list = []
-
-    def __post_init__(self):
-        self.player_list.append(self)
 
 
 class Game:
@@ -34,9 +30,10 @@ class Game:
         self.playerO = Players(id=1, name='playerO', sym='O', score=[], total_score=0)
         self.playerX = Players(id=2, name='playerX', sym='X', score=[], total_score=0)
         self.draw = Players(id=0, name='Draw', sym='', score=[], total_score=0)
+        self.player_list = [self.playerO, self.playerX, self.draw]
         self.player = self.playerO  # current player
         self.mode = 1  # mode 1: single player, mode 2: multiplayer
-        self.cycler = cycle(Players.player_list)
+        self.cycler = cycle(self.player_list)
 
     def ai_move(self):
         if self.predict_win(self.playerO):  # can AI win?
@@ -79,6 +76,6 @@ class Game:
         self.spaces = self.init.copy()
 
     def full_reset(self):
-        for i in Players.player_list:
+        for i in self.player_list:
             i.total_score = 0
         self.reset()
