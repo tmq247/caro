@@ -57,17 +57,17 @@ class Game:
         return self.player.score.append(play)
 
     def win_check(self):
-        draw = [s for s in self.spaces if isinstance(s, int)]
-        if len(draw) == 0:
-            self.draw.total_score += 1
-            return self.draw
-
         score = set(self.player.score)
         for i in win_conditions:
             i = set(i)
             if len(i.intersection(score)) == 3:
                 self.player.total_score += 1
                 return self.player
+
+        draw = [s for s in self.spaces if isinstance(s, int)]
+        if len(draw) == 0:
+            self.draw.total_score += 1
+            return self.draw
 
     def reset(self):
         self.spaces.clear()

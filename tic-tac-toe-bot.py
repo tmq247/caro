@@ -96,7 +96,7 @@ def get_players(call):
         start(call.message)
 
 
-@bot.message_handler(commands=['start'], chat_types=["group"])
+@bot.message_handler(commands=['start'], chat_types=['group'])
 def begin_mp(message):
     bot.send_message(message.chat.id, "Tic-tac-toe: Multiplayer")
     gm = logic.Game()
@@ -105,24 +105,24 @@ def begin_mp(message):
     gm.mode = 2
     gm.playerO.id = None
     gm.playerX.id = None
-    keyboard = Keyboa(items=InlineKeyboardButton("Play", callback_data='players'), items_in_row=2)
+    keyboard = Keyboa(items=InlineKeyboardButton('Play', callback_data='players'), items_in_row=2)
     bot.send_message(chat_id=message.chat.id, text="Waiting for players...", reply_markup=keyboard())
 
 
-@bot.message_handler(commands=['start'], chat_types=["private"])
+@bot.message_handler(commands=['start'], chat_types=['private'])
 def begin_sp(message):
     bot.send_message(message.chat.id, "Tic-tac-toe: Single player")
     gm = logic.Game()
     s.set_gm(message.chat.id, gm)
     gm.reset()
     gm.mode = 1
-    gm.playerO.name = "AI"
+    gm.playerO.name = 'AI'
     gm.playerX.id = message.chat.id
     gm.playerX.name = message.chat.first_name
     start(message)
 
 
-@bot.message_handler(commands=['help'], chat_types=["group", "private"])
+@bot.message_handler(commands=['help'], chat_types=['group', 'private'])
 def help_message(message):
     text = """
     Hello! 
@@ -134,9 +134,9 @@ def help_message(message):
     bot.send_message(message.chat.id, dedent(text))
 
 
-@bot.message_handler(commands=['cancel'], chat_types=["group", "private"])
+@bot.message_handler(commands=['cancel'], chat_types=['group', 'private'])
 def begin(message):
-    bot.send_message(message.chat.id, "Game cancelled")
+    bot.send_message(message.chat.id, 'Game cancelled')
     gm = s.get_gm(message.chat.id)
     gm.full_reset()
 
@@ -169,8 +169,8 @@ def win_check(message):
             text += f"{i.name}: {i.total_score}\n"
         bot.send_message(message.chat.id, text)
         gm.reset()
-        buttons = [InlineKeyboardButton("Yes", callback_data='ng yes'),
-                   InlineKeyboardButton("No", callback_data='ng no')]
+        buttons = [InlineKeyboardButton('Yes', callback_data='ng yes'),
+                   InlineKeyboardButton('No', callback_data='ng no')]
         keyboard = Keyboa(items=buttons, items_in_row=2)
         message_id = bot.send_message(chat_id=message.chat.id, text="Play again?", reply_markup=keyboard()).message_id
         s.set_last_message(message.chat.id, message_id)
