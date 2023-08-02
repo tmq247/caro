@@ -54,7 +54,7 @@ def check_input(text, values):
             elif var not in values:
                 raise ValueError
         except ValueError:
-            print("Enter a number")
+            print("Chọn 1 số")
             continue
         else:
             return var
