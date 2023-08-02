@@ -4,7 +4,7 @@ import logic
 
 window = Tk()
 window.geometry("300x300")
-window.title("Tic Tac Toe")
+window.title("Caro")
 window.eval('tk::PlaceWindow . center')
 gm = logic.Game()
 gm.playerO.sym = "⚪"
