@@ -12,8 +12,8 @@ def start():
         pass
     else:
         print(board())
-        print(f"Player: ( {gm.player.sym} )")
-        gm.move(check_input("Enter [1-9] to play, [0] to exit:\n", gm.spaces))
+        print(f"Người chơi: ( {gm.player.sym} )")
+        gm.move(check_input("Bấm [1-9] để chơi, [0] để thoát:\n", gm.spaces))
 
     winner = gm.win_check()
     if winner:
@@ -36,7 +36,7 @@ def board():
 
 
 def again():
-    _again = check_input("Play again?\n[1]: New game\n[2]: Exit\n", (1, 2))
+    _again = check_input("Chơi lại?\n[1]: Game mới\n[2]: Thoát\n", (1, 2))
     if _again == 1:
         gm.reset()
         start()
@@ -65,5 +65,5 @@ if __name__ == '__main__':
     gm.playerO.sym = colored("O", "blue", attrs=["bold"])
     gm.playerX.sym = colored("X", "red", attrs=["bold"])
     print("Tic-tac-toe")
-    gm.mode = check_input("Select game mode\n[1]: Single player\n[2]: Multiplayer\n", (1, 2))
+    gm.mode = check_input("Chọn chế độ\n[1]: 1 người\n[2]: Nhiêu người\n", (1, 2))
     start()
