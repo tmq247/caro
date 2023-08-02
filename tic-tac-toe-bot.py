@@ -7,7 +7,7 @@ from keyboa import Keyboa
 from textwrap import dedent
 
 load_dotenv(find_dotenv())
-bot = telebot.TeleBot(os.getenv('BOT_TOKEN'))
+bot = telebot.TeleBot(os.getenv('6226805699:AAE1T96RKSjs06kNID7VW9xVsYaSOFDI92o'))
 
 
 class States:
