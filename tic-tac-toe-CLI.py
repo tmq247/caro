@@ -65,5 +65,5 @@ if __name__ == '__main__':
     gm.playerO.sym = colored("O", "blue", attrs=["bold"])
     gm.playerX.sym = colored("X", "red", attrs=["bold"])
     print("Tic-tac-toe")
-    gm.mode = check_input("Chọn chế độ\n[1]: 1 người\n[2]: Nhiêu người\n", (1, 2))
+    gm.mode = check_input("Chọn chế độ\n[1]: 1 người\n[2]: Nhiều người\n", (1, 2))
     start()
