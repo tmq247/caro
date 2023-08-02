@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tic-tac-toe"
+name = "caro"
 version = "1.3.2"
 description = ""
 authors = ["Nyaaa <1457047+Nyaaa@users.noreply.github.com>"]
